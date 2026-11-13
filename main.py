@@ -14,6 +14,9 @@ OUTPUT_PATH = "/output/entry.txt"
 
 
 def main() -> None:
+    # Bounty rule: the entry must be 1-280 characters. Guard it here so a
+    # future joke swap can never silently produce an invalid entry.
+    assert 0 < len(JOKE) <= 280, "joke outside the 1-280 character limit"
     os.makedirs(os.path.dirname(OUTPUT_PATH), exist_ok=True)
     # Exactly the joke text, UTF-8, no trailing newline.
     with open(OUTPUT_PATH, "w", encoding="utf-8", newline="") as f:
